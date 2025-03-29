@@ -52,9 +52,6 @@ export function ResponsiveDialog(props: Props) {
   console.log('DEBUG: Abrindo Drawer (mobile)')
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>{title}</DrawerTitle>
