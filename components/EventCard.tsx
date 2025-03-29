@@ -9,14 +9,16 @@ const EventCard = () => {
   return (
     <div className="bg-white w-full rounded-lg shadow-xs border border-border py-4 px-5 flex flex-col space-y-5">
       {/* Dados */}
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-2 flex flex-col max-md:items-start">
         {/* Titulo */}
-        <div className="flex flex-row justify-between">
-          <div>
-            <div className="badge badge-primary rounded-xl w-max px-3 font-semibold">
+        <div className="flex flex-row justify-between max-md:flex-col">
+          <div className="flex flex-row items-center justify-center gap-2">
+            <h1 className="font-bold text-xl uppercase">
+              Reunião Ritualistica
+            </h1>
+            <div className="badge badge-primary badge-sm rounded-xl w-max px-3 font-semibold">
               Reunião
             </div>
-            <h1 className="font-bold text-xl">Reunião Ritualistica</h1>
           </div>
 
           {/* Badge Presença */}
@@ -27,6 +29,7 @@ const EventCard = () => {
                 isPresente ? "badge-success" : "badge-error"
               )}
             >
+              {isPresente ? <Check height={15} /> : <X height={15} />}
               {isPresente ? "Presente" : "Ausente"}
             </div>
           )}
@@ -57,7 +60,7 @@ const EventCard = () => {
       </div>
 
       {/* Confirmação */}
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between max-md:flex-col max-md:items-start">
         {/* Btns */}
         <div className="flex flex-row gap-2">
           {/* Confirmar */}
