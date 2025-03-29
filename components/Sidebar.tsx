@@ -11,7 +11,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-[250px] max-md:w-[100px] sticky left-0 top-0 flex h-screen flex-col justify-between px-5 pb-5 pt-5 border-r border-border">
+    <div className="bg-white shadow-xs w-[250px] max-md:w-[100px] sticky left-0 top-0 flex h-screen flex-col justify-between px-5 pb-5 pt-5 border-r border-border">
       <div>
         <div className="mt-10 flex-col gap-5">
           {navigationLinks.map((link) => {

@@ -6,7 +6,7 @@ const layout = ({ children }: { children: ReactNode }) => {
   // TODO -> SE NÃO ESTIVER LOGADO, REDIRET
 
   return (
-    <main className="flex min-h-screen w-full flex-row">
+    <main className="flex min-h-screen w-full flex-row bg-notwhite">
       {/* sidebar */}
       <Sidebar />
 
