@@ -17,6 +17,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
+  DrawerTrigger,
 } from "./ui/drawer";
 import { ReactNode } from "react";
 
@@ -30,7 +31,7 @@ interface Props {
 
 export function ResponsiveDialog(props: Props) {
   const {children, isOpen, setIsOpen, description, title} = props;
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)") 
 
   if (isDesktop){
     console.log('DEBUG: Abrindo Dialog (desktop)')
@@ -50,7 +51,10 @@ export function ResponsiveDialog(props: Props) {
   
   console.log('DEBUG: Abrindo Drawer (mobile)')
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Title</DrawerTitle>
