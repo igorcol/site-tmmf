@@ -39,8 +39,8 @@ export function ResponsiveDialog(props: Props) {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Title</DialogTitle>
-            {description && <DialogDescription>Description</DialogDescription>}
+            <DialogTitle>{title}</DialogTitle>
+            {description && <DialogDescription>{description}</DialogDescription>}
           </DialogHeader>
           {children}
         </DialogContent>
@@ -57,8 +57,8 @@ export function ResponsiveDialog(props: Props) {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Title</DrawerTitle>
-          {description && <DialogDescription>Description</DialogDescription>}
+          <DrawerTitle>{title}</DrawerTitle>
+          {description && <DialogDescription>{description}</DialogDescription>}
         </DrawerHeader>
         {children}
         <DrawerFooter className="pt-2">
