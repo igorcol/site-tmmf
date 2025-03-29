@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Check, Clock, MapPin, X } from "lucide-react";
+import { Calendar, Check, Clock, MapPin, Users, X } from "lucide-react";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +82,9 @@ const EventCard = () => {
           </button>
         </div>
         {/* Nominata */}
-        <p>Ver Nominata</p>
+        <button className="flex flex-row gap-2 px-2 py-2 items-center justify-center cursor-pointer">
+          <Users height={20} /> Ver Nominata
+        </button>
       </div>
     </div>
   );
