@@ -1,10 +1,11 @@
 "use client";
 import { navigationLinks } from "@/constants";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -51,12 +52,12 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="cursor-pointer my-8 flex w-full flex-row gap-2 rounded-full border border-gray-300 px-6 py-2 shadow-sm max-md:px-2">
-        {/* <Avatar>
-          <AvatarFallback className="bg-amber-100">
-            {getInitials(session?.user?.name || "U")}
+      <div className="cursor-pointer flex w-full flex-row items-center  gap-2 rounded-full border border-gray-300 px-6 py-2 shadow-sm max-md:px-2">
+        <Avatar>
+          <AvatarFallback className="bg-tmmf text-white font-medium">
+            {getInitials("User Name")}
           </AvatarFallback>
-        </Avatar> */}
+        </Avatar>
 
         <div className="flex flex-col max-md:hidden">
           <p className="font-semibold text-gray-950">User Name</p>
