@@ -1,5 +1,5 @@
 import AddButton from "@/components/AddButton"
-import EventCard from "@/components/EventCard"
+import NextEvent from "@/components/NextEvent";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <AddButton />
 
       {/* TROCAR EVENT CARD POR SEÇÃO "PROXIMO EVENTO" */}
-      <EventCard />
+      <NextEvent />
 
       {/* SEÇÃO "FEED" COM VARIOS CARDS DE EVENTO */}
       <p>TODO: feed</p>
