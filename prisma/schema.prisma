@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  DEFAULT
+}
+
+enum Degree {
+  INICIATICO
+  DEMOLAY
+}
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  password String
+  name String
+  role Role @default(DEFAULT)
+  degree Degree @default(INICIATICO)
+  cargo String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nominatas Nominata[]
+  presencas Presenca[]
+}
+
+model Evento {
+  id String @id @default(cuid())
+  title String
+  subtitle String?
+  descricao String
+  data DateTime
+  horario String
+  local String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nominata Nominata[]
+  presencas Presenca[]
+}
+
+model Nominata {
+  id String @id @default(cuid())
+  cargo String
+  
+  // Relação com Evento
+  evento Evento @relation(fields: [eventoId], references: [id])
+  eventoId String
+
+  // Relação com User
+  membro User @relation(fields: [membroId], references: [id])
+  membroId String
+}
+
+enum PresencaStatus {
+  PRESENTE
+  AUSENTE
+}
+
+model Presenca {
+  id String @id @default(cuid())
+  user User @relation(fields: [userId], references: [id])
+  userId String
+
+  evento Evento @relation(fields: [eventoId], references: [id])
+  eventoId String
+
+  status PresencaStatus
+  justificativa String
+
+  createdAt DateTime @default(now())
+}
