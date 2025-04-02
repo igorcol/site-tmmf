@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -14,8 +9,8 @@ datasource db {
 }
 
 enum Role {
+  SEMI
   ADMIN
-  DEFAULT
 }
 
 enum Degree {
@@ -23,66 +18,72 @@ enum Degree {
   DEMOLAY
 }
 
+enum Cargo {
+  mestre_conselheiro
+  primeiro_conselheiro
+  segundo_conselheiro
+  mestre_de_cerimonias
+  primeiro_diacono
+  segundo_diacono
+  primeiro_mordomo
+  segundo_mordomo
+  capelão
+  porta_bandeira
+  escrivão
+  sentinela
+  tesoureiro
+  orador
+  hospitaleiro
+  primeiro_preceptor
+  segundo_preceptor
+  terceiro_preceptor
+  quarto_preceptor
+  quinto_preceptor
+  sexto_preceptor
+  setimo_preceptor
+}
+
 model User {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   email String @unique
   password String
-  name String
-  role Role @default(DEFAULT)
+  name String?
+  role Role?
   degree Degree @default(INICIATICO)
-  cargo String
+  cargo Cargo? @unique
+
+  eventosPresente Evento[]
+  nominatas NominataEvento[]
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
 
-  nominatas Nominata[]
-  presencas Presenca[]
 }
 
 model Evento {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
   title String
   subtitle String?
   descricao String
   data DateTime
-  horario String
   local String
+  horario String
+  // Nominata
+
+  presentes User[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  nominata Nominata[]
-  presencas Presenca[]
+  nominata NominataEvento[]
 }
 
-model Nominata {
-  id String @id @default(cuid())
-  cargo String
-  
-  // Relação com Evento
+model NominataEvento {
+  id String @id @default(uuid())
   evento Evento @relation(fields: [eventoId], references: [id])
-  eventoId String
-
-  // Relação com User
-  membro User @relation(fields: [membroId], references: [id])
-  membroId String
-}
-
-enum PresencaStatus {
-  PRESENTE
-  AUSENTE
-}
-
-model Presenca {
-  id String @id @default(cuid())
+  eventoId String 
+  cargo Cargo @unique
   user User @relation(fields: [userId], references: [id])
-  userId String
-
-  evento Evento @relation(fields: [eventoId], references: [id])
-  eventoId String
-
-  status PresencaStatus
-  justificativa String
-
-  createdAt DateTime @default(now())
+  userId String // UNIQUE?
+  
 }
